@@ -1,0 +1,38 @@
+<% [:templates, :option_templates].each do |w| %>
+<% node[:xmeter][:templates].each do |t| %>
+<%= w.chop %>
+{
+	<% t.each_pair do |k, v| %>
+	<%= k.to_s %> = {<%= v.map{|r| "\"#{r}\""}.join(",") %>}<%= "\n" %>
+	<% end %>
+}
+<% end %>
+<% end %>
+report_freq = node[:xmeter][:report_freq]
+module_location = \"<%= node[:xmeter][:module_location] %>\"
+<% node[:xmeter][:tls].each_pair do |k, v| %>
+tls
+{
+	<% v.each_pair do |pk, pv| %>
+	<%= pk.to_s %> = "<%= vk.to_s %>"<%= "\n" %>
+	<% end %>
+}
+<% end %>
+<% node[:xmeter][:outputs].each_pair do |k, v| %>
+output
+{
+	uri=\"<%= k %>\"
+	<% v.each_pair do |pk, pv| %>
+	<%= pk.to_s %> = "<%= vk.to_s %>"<%= "\n" %>
+	<% end %>
+}
+<% end %>
+<% node[:xmeter][:outputs].each_pair do |k, v| %>
+input
+{
+	uri=\"<%= v[:type] %>:<%= k %>\"
+	<% v.each_pair do |pk, pv| %>
+	<%= pk.to_s %> = "<%= vk.to_s %>"<%= "\n" %>
+	<% end %>
+}
+<% end %>
