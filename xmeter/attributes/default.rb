@@ -4,7 +4,8 @@ default[:xmeter][:templates] =
       	"protocolIdentifier",
       	"sourceTransportPort", "destinationTransportPort"],
     :elements => ["packettotalcount", "octettotalcount", "flowId",
-        "flowstartmicroseconds", "flowendmicroseconds"]}
+        "flowstartmicroseconds", "flowendmicroseconds",
+        "avgpacketspersecond", "avgoctetspersecond"]}
   ]
 default[:xmeter][:option_templates] =
   [
